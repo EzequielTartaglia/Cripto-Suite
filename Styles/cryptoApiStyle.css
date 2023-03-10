@@ -1,0 +1,177 @@
+.crypto-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto;
+  justify-content: center;
+}
+#crypto-list{
+  display: flex;
+  flex-wrap: wrap;
+}
+.crypto-card {
+  margin: 10px;
+  width: 200px;
+  max-width: 300px;
+  height: 150px;
+  border: 1px solid gray;
+  border-radius: 6%;
+  display: inline-block;
+  text-align: center;
+  align-content: center;
+  overflow: hidden;
+  background-color: #1c1c1c;
+  color: #00d800;
+  animation: RGB_effect_card 20s ease-in-out infinite;
+  transition: background-color 0.2s ease-in-out;
+
+}
+@keyframes RGB_effect_card {
+  0% {
+    border: 1px solid #00d800;
+  }
+  25% {
+    border: 1px solid #00ff00;
+  }
+  50% {
+    border: 1px solid #37f537;
+  }
+  75% {
+    border: 1px solid #37f537;
+  }
+  100% {
+    border: 1px solid #00ff00;
+  }
+}
+.crypto-card:hover{
+  background-color: #2b2b2b;
+  animation: none;
+  font-weight: 700;
+  color: #e2ebe2;
+  animation: RGB_effect_search 20s ease-in-out infinite;
+  }
+  @keyframes RGB_effect_search {
+    0% { box-shadow: 0px 0px 20px #00d800; }
+    25% {box-shadow: 0px 0px 20px #00FF00;} 
+    50% { box-shadow: 0px 0px 20px #37f537; }
+    75% {box-shadow: 0px 0px 20px #37f537;} 
+    100% { box-shadow: 0px 0px 20px #00FF00;} 
+  }
+  .crypto-card:hover .crypto-button {
+    animation: none;
+    color: #d4d4d4;
+    border: 1px solid #d4d4d4;
+    background-color: #2b2b2b;
+
+  }
+.crypto-icon {
+  width: 50px;
+  height: 50px;
+  margin-top: 10px;
+}
+
+.crypto-name {
+  font-weight: bold;
+  margin-top: 5px;
+  display: block;
+  font-size: 16px;
+}
+
+.crypto-price {
+  margin-top: 0px;
+  display: block;
+  font-size: 14px;
+}
+.crypto-button {
+  margin-top: 8px;
+  padding: 5px 8px;
+  max-width: 80px;
+  border-radius: 6px;
+  padding-left: 5px;
+  border: 2px;
+  font-weight: 600;
+  text-align: center;
+  font-size: 12px;
+  text-transform: capitalize;
+  transition: opacity 0.2s ease-in-out;
+  background-color: #1c1c1c;
+  animation: RGB_effect_button 20s ease-in-out infinite;
+}
+@keyframes RGB_effect_button {
+  0% {
+    color: #00d800;
+    border: 1px solid #00d800;
+  }
+  25% {
+    color: #00ff00;
+    border: 1px solid #00ff00;
+  }
+  50% {
+    color: #37f537;
+    border: 1px solid #37f537;
+  }
+  75% {
+    color: #37f537;
+    border: 1px solid #37f537;
+  }
+  100% {
+    color: #00ff00;
+    border: 1px solid #00ff00;
+  }
+}
+
+.crypto-button:hover {
+  cursor: pointer;
+  letter-spacing: 0.3px;
+}
+
+
+.crypto-button-dissabled{
+  background-color: rgb(163, 163, 163);
+  cursor: normal;
+  margin-top: 8px;
+  padding: 5px 8px;
+  max-width: 80px;
+  border-radius: 6px;
+  padding-left: 5px;
+  border: 2px;
+  font-weight: 600;
+  text-align: center;
+  font-size: 12px;
+  text-transform: capitalize;
+  transition: opacity 0.2s ease-in-out;
+  animation: RGB_effect_button_dissabled 20s ease-in-out infinite;
+
+}
+@keyframes RGB_effect_button_dissabled {
+  0% {
+    color: #4b4e4b;
+  }
+  25% {
+    color: #414241;
+  }
+  50% {
+    color: #373837;
+  }
+  75% {
+    color: #373837;
+  }
+  100% {
+    color: #414241;
+  }
+}
+
+.crypto-button-dissabled:hover{
+  cursor: pointer;
+  opacity: 1;
+  color: #414241;
+  border: #414241;
+  letter-spacing: 0;
+}
+
+.crypto-card:hover .crypto-button-dissabled {
+  animation: none;
+  color: #000000;
+  border: 1px solid #000000;
+  background-color: rgb(163, 163, 163);
+}
