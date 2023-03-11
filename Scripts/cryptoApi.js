@@ -20,7 +20,6 @@ async function getDollarCryptoValue() {
   const usdToArs = data.find((cryptoCoin) => cryptoCoin.id === "usd-coin").current_price;
   return usdToArs;
 }
-
 fetch(`${url}?${new URLSearchParams(paramsUSD)}`)
   .then((response) => response.json())
   .then((data) => {
@@ -35,7 +34,7 @@ fetch(`${url}?${new URLSearchParams(paramsUSD)}`)
         <span class="crypto-price"  data-price="${cryptoCoin.current_price}">${cryptoCoin.current_price} USD</span>
         <span class="crypto-price"  style="display:none"">${cryptoCoin.current_price} </span>
         <div>
-        <button class="crypto-button">ARS Price</button>
+        <button class="crypto-button crypto-btn">ARS Price</button>
         </div>
       </li>
           `;
@@ -65,7 +64,7 @@ fetch(`${url}?${new URLSearchParams(paramsUSD)}`)
 
             // Convert USD to ARS
             const usdPrice = parseFloat(clickedCardPrice.replace(" USD", ""));
-            const arsPrice = usdPrice * parseInt(await getDollarCryptoValue()).toFixed(2); // for example
+            const arsPrice = usdPrice * parseInt(await getDollarCryptoValue()).toFixed(2);
 
             clickedCard.style.display = "block";
             clickedCard.innerHTML = `
@@ -74,7 +73,7 @@ fetch(`${url}?${new URLSearchParams(paramsUSD)}`)
                 <span class="crypto-name">${clickedCardName}</span>
                 <span class="crypto-price">${arsPrice} ARS</span>
                 <div>
-                  <button class="crypto-button crypto-button-dissabled">Opened</button>
+                  <button class="crypto-button crypto-btn crypto-button-dissabled" style=" pointer-events: none;">Opened</button>
                 </div>
               </li>`;
 
@@ -95,8 +94,67 @@ fetch(`${url}?${new URLSearchParams(paramsUSD)}`)
         });
       });
     }
+    /* --------------------------- Switch coins filters  --------------------- */
+    
+    function getDollarCryptoValue() {
+      return fetch("https://api.coindesk.com/v1/bpi/currentprice.json")
+        .then((res) => res.json())
+        .then((data) => {
+          return data.bpi.USD.rate_float;
+        });
+    }
+    
+    function changeButtonToOpened(card) {
+      const button = card.querySelector(".crypto-button");
+      button.classList.add("crypto-button-dissabled");
+      button.textContent = "Opened";
+      button.style.pointerEvents = "none";
+    }
+    
+    function changeButtonToUSD(card) {
+      const button = card.querySelector(".crypto-button");
+      button.classList.remove("crypto-button-dissabled");
+      button.textContent = "ARS Price";
+      button.style.pointerEvents = "auto";
+    }
+    
+    function convertAllToUSD() {
+      const cards = document.querySelectorAll(".crypto-card");
+      cards.forEach(async (card) => {
+        changeButtonToUSD(card);
+        const priceUSD = parseFloat(card.querySelector(".crypto-price").dataset.price);
+        card.querySelector(".crypto-price").textContent = `${priceUSD.toFixed(2)} USD`;
+      });
+    }
+    
+    function convertAllToARS() {
+      const cards = document.querySelectorAll(".crypto-card");
+      cards.forEach(async (card) => {
+        changeButtonToUSD(card);
+        const priceUSD = parseFloat(card.querySelector(".crypto-price").dataset.price);
+        const priceARS = (priceUSD * await getDollarCryptoValue()).toFixed(2);
+        card.querySelector(".crypto-price").textContent = `${priceARS} ARS`;
+        changeButtonToOpened(card);
+      });
+    }
+    
+    const convertToARSbtn = document.getElementById("convertToARS-btn");
+    convertToARSbtn.addEventListener("click", convertAllToARS);
+    
+    const convertToUSDbtn = document.getElementById("refresh-btn");
+    convertToUSDbtn.addEventListener("click", convertAllToUSD);
+    
+    const cryptoCards = document.querySelectorAll(".crypto-card");
+    cryptoCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        const details = card.querySelector(".crypto-details");
+        details.classList.toggle("crypto-details-opened");
+      });
+    });
+    
+    /* --------------------------- Switch coins filters  --------------------- */
 
-    /* ----------------------------------------------------------------- */
+        /* ----------------------------------------------------------------- */
     //Search bar
     function searchCrypto(value) {
       const searchValue = value.toLowerCase();
@@ -125,8 +183,9 @@ fetch(`${url}?${new URLSearchParams(paramsUSD)}`)
     searchBar.addEventListener("input", (e) => {
       searchCrypto(e.target.value);
     });
+    /* ----------------------------------------------------------------- */
+
   })
   .catch((error) => {
     console.error(error);
   });
-/* ----------------------------------------------------------------- */
