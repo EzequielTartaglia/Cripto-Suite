@@ -17,8 +17,12 @@
       <input type="search" name="search-bar" id="search-bar" placeholder="Search crypto..." oninput="searchCrypto(this.value)">
       <button type="submit" id="search-button">🕵️</button>
     </div>
-     <button id="refresh-btn" onclick="location.reload()">Reset</button>
+    <div>
+      <button id="convertToARS-btn" class="crypto-btn">All to ARS</button>
+     <button id="refresh-btn" class="crypto-btn">All to</button>
     </div>
+    </div>
+
     <div class="crypto-list-container">
     <ul id="crypto-list"></ul>
   </div>
