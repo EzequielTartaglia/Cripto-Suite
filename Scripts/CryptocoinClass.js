@@ -22,4 +22,3 @@ class CryptoCoin {
     `;
     cryptoListHTML.innerHTML += HTML_STRUCTURE;
   }
-  

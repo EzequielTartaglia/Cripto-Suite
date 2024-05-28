@@ -12,7 +12,6 @@ Proyecto que recolesta la informacion del valor en el mercado de las cryptomoned
 
 •Cuenta con dos botones de filtros adicionales para convertir todos los valores de precio a ARS o USD.
 
-
 ## Adicional
 
 Tiene un protocolo de diseño basado en el estilo cyberpunk.
