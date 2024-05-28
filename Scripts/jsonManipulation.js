@@ -1,4 +1,4 @@
-fetch('/Json/developer_info.json')
+fetch('https://raw.githubusercontent.com/EzequielTartaglia/Cripto-Suite/main/Json/developer_info.json')
         .then(response => response.json())
         .then(data => {
           const footer = document.getElementById('footer');
