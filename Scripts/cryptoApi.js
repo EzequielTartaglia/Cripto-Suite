@@ -201,5 +201,3 @@ fetch(`${url}?${new URLSearchParams(paramsUSD)}`)
   .catch((error) => {
     console.error(error);
   });
-
-quiero que si no esta en el localstorage que puedas almacenar lo que trae de la api y si esta entonces ya muestre cada card
