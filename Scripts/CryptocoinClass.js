@@ -1,11 +1,12 @@
 //Structure Class
-export class CryptoCoin {
-  constructor(name, image, current_price) {
-    this.name = name;
-    this.image = image;
-    this.current_price = current_price;
+class CryptoCoin {
+    constructor(name,image,current_price){
+      this.name = name,
+      this.image = image,
+      this.current_price = current_price
+    }
+  
   }
-}
 //Render structure (HTML)
   function createCryptoCard(cryptoCoinObject) {
     const HTML_STRUCTURE = `
@@ -21,3 +22,5 @@ export class CryptoCoin {
     `;
     cryptoListHTML.innerHTML += HTML_STRUCTURE;
   }
+
+me dice que no encuentra CryptoCoin
