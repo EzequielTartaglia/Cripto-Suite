@@ -29,7 +29,6 @@ async function getDollarCryptoValue() {
 }
 
 function createCryptoCard(cryptoCoin) {
-  // Assuming this function creates and adds a card to the DOM
   const card = document.createElement('li');
   card.id = cryptoCoin.name;
   card.className = 'crypto-card';
@@ -53,6 +52,7 @@ function loadCryptoData(data) {
         cryptoCoin.current_price
       )
     );
+    localStorage.setItem("cryptoCoinsArray", JSON.stringify(cryptoCoinsArray));
     createCryptoCard(cryptoCoin);
   });
   addEventListenersToButtons();
@@ -138,80 +138,4 @@ function convertAllToUSD() {
 async function convertAllToARS() {
   const cards = document.querySelectorAll(".crypto-card");
   for (let card of cards) {
-    let priceElement = card.querySelector(".crypto-price");
-    let priceUSD = parseFloat(priceElement.dataset.price);
-    let priceARS = Math.round(priceUSD * (await getDollarCryptoValue()));
-    if (isNaN(priceARS)) {
-      let originalValue = priceElement.getAttribute("data-original-value");
-      if (originalValue) {
-        priceElement.textContent = originalValue;
-      }
-    } else {
-      priceElement.textContent = `${priceARS} ARS`;
-    }
-    changeButtonToOpened(card);
-  }
-}
-
-const convertToARSbtn = document.getElementById("convertToARS-btn");
-convertToARSbtn.addEventListener("click", convertAllToARS);
-
-const convertToUSDbtn = document.getElementById("refresh-btn");
-convertToUSDbtn.addEventListener("click", convertAllToUSD);
-
-const cryptoCards = document.querySelectorAll(".crypto-card");
-cryptoCards.forEach((card) => {
-  card.addEventListener("click", () => {
-    const details = card.querySelector(".crypto-details");
-    details.classList.toggle("crypto-details-opened");
-  });
-});
-
-function searchCrypto(value) {
-  const searchValue = value.toLowerCase();
-
-  const cards = document.querySelectorAll(".crypto-card");
-  cards.forEach((card) => {
-    const title = card
-      .querySelector(".crypto-name")
-      .textContent.toLowerCase();
-
-    if (title.includes(searchValue)) {
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
-    }
-
-    card.addEventListener("click", () => {
-      searchCrypto(searchBar.value);
-    });
-  });
-}
-
-const searchBar = document.getElementById("search-bar");
-searchBar.addEventListener("input", (e) => {
-  searchCrypto(e.target.value);
-});
-
-document.addEventListener("DOMContentLoaded", async () => {
-  let cryptoData = localStorage.getItem("cryptoCoinsArray");
-
-  if (cryptoData) {
-    cryptoCoinsArray = JSON.parse(cryptoData);
-    loadCryptoData(cryptoCoinsArray);
-  } else {
-    try {
-      const response = await fetch(`${url}?${new URLSearchParams(paramsUSD)}`);
-      const data = await response.json();
-      cryptoCoinsArray = data.map(cryptoCoin => ({
-        name: cryptoCoin.name,
-        image: cryptoCoin.image,
-        current_price: cryptoCoin.current_price
-      }));
-      localStorage.setItem("cryptoCoinsArray", JSON.stringify(cryptoCoinsArray));
-      loadCryptoData(cryptoCoinsArray);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-});
+    let priceE
