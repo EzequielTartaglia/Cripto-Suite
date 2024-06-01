@@ -47,6 +47,8 @@ fetch(`${url}?${new URLSearchParams(paramsUSD)}`)
       createCryptoCard(cryptoCoin);
     });
 
+        localStorage.setItem('cryptoData', JSON.stringify(data));
+
     //3 - Function to change the card when the user click in ARS Price
     //Create the element to manipulate in the HTML (crypto-card from api)
     const cards = document.querySelectorAll(".crypto-card");
