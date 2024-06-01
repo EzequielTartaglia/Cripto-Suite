@@ -194,17 +194,22 @@ searchBar.addEventListener("input", (e) => {
 });
 
 document.addEventListener("DOMContentLoaded", async () => {
-  let cryptoData = localStorage.getItem("cryptoData");
+  let cryptoData = localStorage.getItem("cryptoCoinsArray");
 
   if (cryptoData) {
-    cryptoData = JSON.parse(cryptoData);
-    loadCryptoData(cryptoData);
+    cryptoCoinsArray = JSON.parse(cryptoData);
+    loadCryptoData(cryptoCoinsArray);
   } else {
     try {
       const response = await fetch(`${url}?${new URLSearchParams(paramsUSD)}`);
       const data = await response.json();
-      localStorage.setItem("cryptoData", JSON.stringify(data));
-      loadCryptoData(data);
+      cryptoCoinsArray = data.map(cryptoCoin => ({
+        name: cryptoCoin.name,
+        image: cryptoCoin.image,
+        current_price: cryptoCoin.current_price
+      }));
+      localStorage.setItem("cryptoCoinsArray", JSON.stringify(cryptoCoinsArray));
+      loadCryptoData(cryptoCoinsArray);
     } catch (error) {
       console.error(error);
     }
