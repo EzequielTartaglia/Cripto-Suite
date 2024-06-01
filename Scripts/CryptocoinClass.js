@@ -22,5 +22,3 @@ class CryptoCoin {
     `;
     cryptoListHTML.innerHTML += HTML_STRUCTURE;
   }
-
-me dice que no encuentra CryptoCoin
