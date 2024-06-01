@@ -29,5 +29,5 @@ function draw() {
   }
 }
 
-// Bucle para animar la matriz
+// Infinite loop
 setInterval(draw, 35);
