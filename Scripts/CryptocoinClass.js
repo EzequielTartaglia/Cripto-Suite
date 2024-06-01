@@ -1,12 +1,11 @@
 //Structure Class
-class CryptoCoin {
-    constructor(name,image,current_price){
-      this.name = name,
-      this.image = image,
-      this.current_price = current_price
-    }
-  
+export class CryptoCoin {
+  constructor(name, image, current_price) {
+    this.name = name;
+    this.image = image;
+    this.current_price = current_price;
   }
+}
 //Render structure (HTML)
   function createCryptoCard(cryptoCoinObject) {
     const HTML_STRUCTURE = `
