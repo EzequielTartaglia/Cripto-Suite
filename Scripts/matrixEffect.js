@@ -10,7 +10,7 @@ var drops = [];
 for (var x = 0; x < columns; x++)
   drops[x] = 1; 
 
-// Función para dibujar la animación
+// Draw the animation
 function draw() {
   ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
   ctx.fillRect(0, 0, c.width, c.height);
